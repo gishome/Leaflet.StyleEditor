@@ -186,21 +186,35 @@ L.Control.StyleEditor = L.Control.extend({
     }
   },
 
-  enable: function () {
+  enable: function (layer) {
     L.DomUtil.addClass(this.options.controlUI, 'enabled')
     this.options.map.eachLayer(this.addEditClickEvents, this)
     this.showCancelButton()
     this.createTooltip()
+
+    if (layer !== undefined) {
+      if (this.isEnabled()) {
+        this.removeIndicators()
+      }
+      this.options.currentElement = layer;
+      this.initChangeStyle(layer)
+    }
+  },
+
+  isEnabled: function () {
+    return L.DomUtil.hasClass(this.options.controlUI, 'enabled')
   },
 
   disable: function () {
-    this.options._editLayers.forEach(this.removeEditClickEvents, this)
-    this.options._editLayers = []
-    this.options._layerGroups = []
-    this.hideEditor()
-    this.hideCancelButton()
-    this.removeTooltip()
-    L.DomUtil.removeClass(this.options.controlUI, 'enabled')
+    if (this.isEnabled()) {
+      this.options._editLayers.forEach(this.removeEditClickEvents, this)
+      this.options._editLayers = []
+      this.options._layerGroups = []
+      this.hideEditor()
+      this.hideCancelButton()
+      this.removeTooltip()
+      L.DomUtil.removeClass(this.options.controlUI, 'enabled')
+    }
   },
 
   addEditClickEvents: function (layer) {
