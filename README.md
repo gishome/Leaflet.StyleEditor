@@ -80,6 +80,17 @@ Here is a list of all possible options.
 * **styleEditorEventPrefix**  
   Overwrite the prefix for the events. Default is *'styleeditor:'*
 
+* **forms**  
+  Define when to show what form for which option.
+
+  Currently only predefined options of the Geometry- and Markerform are supported.
+  You may provide a boolean, boolean function, [FormElement](https://github.com/dwilhelm89/Leaflet.StyleEditor/blob/master/src/javascript/FormElements/FormElement.js) or dictionary.
+
+
+  A *boolean* indicates if a FormElement should be shown at all,  
+  a *function* will be called and it's return value indicates if a FormElemnt should be shown  
+  and a *FormElement* overwrides the predefined FormElement.
+
 ### Events
 
 Events are prefixed with 'styleeditor:' unless defined differently in the [settings](#settings)
