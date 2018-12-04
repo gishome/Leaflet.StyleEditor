@@ -59,7 +59,7 @@ Here is a list of all possible options.
 
 * **defaultMarkerColor**  
   The default color for markers.  
-  example: '#2c3e50'
+  example: *'#2c3e50'*
 
 * **openOnLeafletDraw**  
   Define if Leaflet.StyleEditor should automatically show up if an element has been created with
@@ -81,15 +81,21 @@ Here is a list of all possible options.
   Overwrite the prefix for the events. Default is *'styleeditor:'*
 
 * **forms**  
-  Define when to show what form for which option.
+  A dictionary defining when to show what form for which option.  
+  example: *{'marker': {'icon': CustomIconFormElement }}*  
+  example: *{'geometry': {'color': false}}*  
+  example: *{'marker': {'size': () => return {new Date().getSecond()%2==0 }}*  
+  example: *{'geometry': {'opacity': (elem) => {return elem.target instanceof L.Polygon}}}*  
+  example: *{'marker': {'size': {'boolean': () => {return true }, 'formElement': 'L.StyleEditor.formElement.DashElement'}}}*
 
-  Currently only predefined options of the Geometry- and Markerform are supported.
-  You may provide a boolean, boolean function, [FormElement](https://github.com/dwilhelm89/Leaflet.StyleEditor/blob/master/src/javascript/FormElements/FormElement.js) or dictionary.
+  Only predefined styleOptions of the Geometry- and Markerform are supported.
+  For every styleOption You may provide a boolean, function, [FormElement](https://github.com/dwilhelm89/Leaflet.StyleEditor/blob/master/src/javascript/FormElements/FormElement.js) or dictionary.
+ 
+  A **boolean** indicates if a FormElement should be shown at all,  
+  a **function** will be called and its return value indicates if a FormElement should be shown  
+  and a **FormElement** overrides the predefined FormElement.
+  The **dictionary** may contain 'boolean' and 'formElement' thus combining obove mentionend options. 
 
-
-  A *boolean* indicates if a FormElement should be shown at all,  
-  a *function* will be called and it's return value indicates if a FormElemnt should be shown  
-  and a *FormElement* overwrides the predefined FormElement.
 
 ### Events
 
