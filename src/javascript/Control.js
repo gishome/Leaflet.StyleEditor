@@ -196,7 +196,7 @@ L.Control.StyleEditor = L.Control.extend({
       if (this.isEnabled()) {
         this.removeIndicators()
       }
-      this.options.currentElement = layer;
+      this.options.currentElement = layer
       this.initChangeStyle(layer)
     }
   },
